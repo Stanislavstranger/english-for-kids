@@ -1,0 +1,20 @@
+@import "./burger";
+@import "./switch";
+
+.header__container,
+.footer__container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 60px;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.header__title {
+    font-size: 80px;
+    padding-right: 60px;
+    color: $orange;
+}

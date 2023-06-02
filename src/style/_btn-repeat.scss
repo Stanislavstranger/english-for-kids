@@ -1,0 +1,14 @@
+.repeat {
+    width: 80px;
+    margin: 15px;
+}
+
+.repeat:hover {
+    transition: rotate 0.8s;
+    rotate: 360deg;
+}
+
+.repeat:active {
+    transition: scale 0.8s;
+    scale: 1.2;
+}
