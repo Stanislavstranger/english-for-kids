@@ -1,0 +1,35 @@
+.start-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 260px;
+    margin: 5px;
+    padding: 0;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    font-size: 40px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: $orange;
+    color: $white;
+    position: fixed;
+    bottom: 150px;
+    right: 25px;
+}
+
+.start-button._hidden {
+    display: none;
+}
+
+.start-button span {
+    margin: -2px;
+    white-space: nowrap;
+}
+
+.start-button:hover {
+    background-color: $green;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}

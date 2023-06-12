@@ -1,6 +1,7 @@
 const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const mode = process.env.NODE_ENV || "development";
 
@@ -31,7 +32,10 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
         filename: "index.[contenthash].css"
-    })
+    }),
+    new CopyPlugin({
+        patterns: [{ from: 'src/data', to: 'data/' }],
+    }),
     ],
     module: {
         rules: [
@@ -55,7 +59,7 @@ module.exports = {
                     "sass-loader"
                 ],
             },
-            {
+            /* {
                 test: /\.woff2?$/i,
                 type: "asset/resource",
                 generator: {
@@ -90,7 +94,7 @@ module.exports = {
                     }
                 ],
                 type: "asset/resource",
-            },
+            }, */
             {
                 test: /\.(?:js|mjs|cjs)$/,
                 exclude: /node_modules/,

@@ -1,4 +1,27 @@
-/* The switch - the box around the slider */
+.mode {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mode._hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.mode__text {
+    width: 125px;
+    font-size: 40px;
+    color: $green;
+    text-align: right;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.mode__text.red {
+    color: $red;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 
 .switch {
     font-size: 17px;
@@ -6,17 +29,14 @@
     display: inline-block;
     width: 62px;
     height: 35px;
-    margin-left: 10px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
     opacity: 1;
     width: 0;
     height: 0;
 }
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;

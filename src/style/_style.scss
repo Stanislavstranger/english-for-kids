@@ -1,6 +1,18 @@
 body {
     font-family: 'Cherry Bomb One';
-    background: url('./data/img/4.jpg') 0 50% /cover no-repeat fixed;
+    background: url('./data/img/background.jpg') 0 50% /cover no-repeat fixed;
+
+    -webkit-user-select: none;
+    /* Для браузеров на основе WebKit (Chrome, Safari) */
+    -moz-user-select: none;
+    /* Для браузеров на основе Gecko (Firefox) */
+    -ms-user-select: none;
+    /* Для браузера Internet Explorer */
+    user-select: none;
+}
+
+._result {
+    background: #64ffc5;
 }
 
 @media (min-width:1281px) {

@@ -1,20 +1,51 @@
 @import "./burger";
 @import "./switch";
 
-.header__container,
-.footer__container {
+.header__container {
     display: flex;
     flex-wrap: wrap;
-    height: 60px;
     align-items: center;
     justify-content: flex-end;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    column-gap: 40px;
+    margin-bottom: 10px;
 }
 
 .header__title {
     font-size: 80px;
-    padding-right: 60px;
     color: $orange;
+    padding-left: 55px;
+    letter-spacing: 0.02em;
+    line-height: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width:1000px) {
+    .header__title {
+        font-size: 60px;
+    }
+}
+
+@media (max-width:800px) {
+    .header__title {
+        font-size: 50px;
+        line-height: 1;
+    }
+}
+
+@media (max-width:680px) {
+    .header__title {
+        padding-left: 25vw;
+    }
+}
+
+@media (max-width:425px) {
+    .header__title {
+        font-size: 40px;
+    }
+}
+
+@media (max-width:370px) {
+    .header__title {
+        font-size: 30px;
+    }
 }

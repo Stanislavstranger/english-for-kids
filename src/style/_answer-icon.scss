@@ -1,0 +1,59 @@
+.answer-icon {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    overflow: hidden;
+    text-align: right;
+    max-width: 42vw;
+}
+
+.answer-icon__img {
+    width: 50px;
+    margin: 15px;
+}
+
+@media (max-width:1140px) {
+    .answer-icon {
+        flex-direction: column;
+        position: fixed;
+        max-height: 50vh;
+        right: 40px;
+        bottom: 130px;
+    }
+
+    .answer-icon__img {
+        width: 45px;
+        margin: 10px;
+    }
+}
+
+@media (max-height:785px) {
+    .answer-icon__img {
+        width: 5vh;
+        margin: 10px;
+    }
+}
+
+@media (max-height:670px) {
+    .answer-icon__img {
+        width: 4.5vh;
+    }
+}
+
+@media (max-width:380px) {
+    .answer-icon {
+        right: 30px;
+    }
+}
+
+@media (max-width:900px) and (orientation: landscape) {
+    .answer-icon {
+        flex-wrap: nowrap;
+        overflow: hidden;
+        height: 15vh;
+    }
+
+    .answer-icon__img {
+        width: 45px;
+        margin: 10px;
+    }
+}
