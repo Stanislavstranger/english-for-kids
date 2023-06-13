@@ -4,24 +4,23 @@
     right: 15px;
     width: 80px;
     margin: 15px;
-}
+    cursor: pointer;
 
-@media (max-width:380px) {
-    .repeat {
+    @media (max-width:380px) {
         right: 0px;
     }
-}
 
-.repeat._hidden {
-    display: none;
-}
+    &._hidden {
+        display: none;
+    }
 
-.repeat:hover {
-    transition: rotate 0.8s;
-    rotate: 360deg;
-}
+    &:hover {
+        transition: rotate 0.8s;
+        rotate: 360deg;
+    }
 
-.repeat:active {
-    transition: scale 0.8s;
-    scale: 1.2;
+    &:active {
+        transition: scale 0.8s;
+        scale: 1.2;
+    }
 }

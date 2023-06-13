@@ -6,26 +6,24 @@
     padding-top: 20px;
     padding-bottom: 20px;
     gap: 60px;
-}
 
-@media (max-width:1140px) {
-    .card-container {
-        width: 90%;
-        justify-content: center;
+    &._hidden {
+        display: none;
     }
-}
 
-@media (max-width:700px) {
-    .card-container {
-        width: 85%;
-        justify-content: center;
+    @media (max-width:1140px) {
+            width: 90%;
+            justify-content: center;
     }
-}
 
-@media (max-width:450px) {
-    .card-container {
-        width: 70%;
-        justify-content: center;
+    @media (max-width:700px) {
+            width: 85%;
+            justify-content: center;
+    }
+
+    @media (max-width:450px) {
+            width: 70%;
+            justify-content: center;
     }
 }
 
@@ -36,18 +34,16 @@
     perspective: 1000px;
     opacity: 1;
     cursor: pointer;
-}
 
-.flip-card.inactive {
-    opacity: 0.5;
-    pointer-events: none;
-}
+    &.inactive {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 
-@media (max-width:370px) {
-    .flip-card {
-        background-color: transparent;
-        height: 75vw;
-        perspective: 1000px;
+    @media (max-width:370px) {
+            background-color: transparent;
+            height: 75vw;
+            perspective: 1000px;
     }
 }
 
@@ -57,16 +53,14 @@
     letter-spacing: 0.2em;
     text-align: center;
     margin: 0;
+
+    @media (max-width:370px) {
+            font-size: 1.1em;
+    }
 }
 
 .flip-card._play .title {
     display: none;
-}
-
-@media (max-width:370px) {
-    .title {
-        font-size: 1.1em;
-    }
 }
 
 .title__text {

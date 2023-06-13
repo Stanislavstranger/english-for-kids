@@ -9,17 +9,15 @@ body {
     -ms-user-select: none;
     /* Для браузера Internet Explorer */
     user-select: none;
+
+    @media (min-width:1281px) {
+            min-height: 100vh;
+            overflow: hidden;
+    }
 }
 
 ._result {
     background: #64ffc5;
-}
-
-@media (min-width:1281px) {
-    body {
-        min-height: 100vh;
-        overflow: hidden;
-    }
 }
 
 .wrapper {

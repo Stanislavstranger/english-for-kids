@@ -1,104 +1,123 @@
-import { cardContainer, subHeader, startButton, answerIcon, mode, repeatButton } from '../utils/var';
+import {
+    cardContainer,
+    subHeader,
+    startButton,
+    answerIcon,
+    mode,
+    repeatButton,
+    tableStatistics,
+    buttonStatistics
+} from '../utils/var';
+
 import cards from '../../data/cards';
 import modeText from '../controllers/toggleMode';
+import { createArrayTable, setElement } from './table-statistics';
 
 let arrayCards = [];
 
 function createFlipCard(number) {
-    for (let i = 0; i < cards[0].length; i++) {
-        const divFlipCard = document.createElement('div');
-        divFlipCard.classList.add('flip-card');
+    if (number !== `${cards.length}`) {
+        tableStatistics.classList.add('_hidden');
+        buttonStatistics.classList.add('_hidden');
 
-        const divFlipCardInner = document.createElement('div');
-        divFlipCardInner.classList.add('flip-card-inner');
+        for (let i = 0; i < cards[0].length; i++) {
+            const divFlipCard = document.createElement('div');
+            divFlipCard.classList.add('flip-card');
 
-        const divFlipCardFront = document.createElement('div');
-        divFlipCardFront.classList.add('flip-card-front');
+            const divFlipCardInner = document.createElement('div');
+            divFlipCardInner.classList.add('flip-card-inner');
 
-        const imgFlipCardFront = document.createElement('img');
-        imgFlipCardFront.classList.add('flip-card__image');
+            const divFlipCardFront = document.createElement('div');
+            divFlipCardFront.classList.add('flip-card-front');
 
-        const titleFlipCardFront = document.createElement('h3');
-        titleFlipCardFront.classList.add('title');
+            const imgFlipCardFront = document.createElement('img');
+            imgFlipCardFront.classList.add('flip-card__image');
 
-        const textFlipCardFront = document.createElement('h4');
-        textFlipCardFront.classList.add('title__text');
+            const titleFlipCardFront = document.createElement('h3');
+            titleFlipCardFront.classList.add('title');
 
-        const controllerFlipCardInner = document.createElement('div');
-        controllerFlipCardInner.classList.add('controll');
+            const textFlipCardFront = document.createElement('h4');
+            textFlipCardFront.classList.add('title__text');
 
-        const imgRepeatControllerFlipCardInner = document.createElement('img');
-        imgRepeatControllerFlipCardInner.classList.add('flip-card__rotate');
+            const controllerFlipCardInner = document.createElement('div');
+            controllerFlipCardInner.classList.add('controll');
 
-        const divFlipCardBack = document.createElement('div');
-        divFlipCardBack.classList.add('flip-card-back');
+            const imgRepeatControllerFlipCardInner = document.createElement('img');
+            imgRepeatControllerFlipCardInner.classList.add('flip-card__rotate');
 
-        const imgFlipCardBack = document.createElement('img');
-        imgFlipCardBack.classList.add('flip-card__image');
+            const divFlipCardBack = document.createElement('div');
+            divFlipCardBack.classList.add('flip-card-back');
 
-        const titleFlipCardBack = document.createElement('h3');
-        titleFlipCardBack.classList.add('title');
+            const imgFlipCardBack = document.createElement('img');
+            imgFlipCardBack.classList.add('flip-card__image');
 
-        const textFlipCardBack = document.createElement('h4');
-        textFlipCardBack.classList.add('title__text');
+            const titleFlipCardBack = document.createElement('h3');
+            titleFlipCardBack.classList.add('title');
 
-        if (number === '0') {
-            imgFlipCardFront.src = `../../data/img/${cards[0][i]}.png`;
-            imgFlipCardFront.alt = `${cards[0][i]}`;
-            titleFlipCardFront.innerText = `${cards[0][i]}`;
-            textFlipCardFront.innerText = `${cards[i + 1].length} cards`;
-            divFlipCard.classList.add('_no-flip');
-            divFlipCard.id = `0-${i + 1}`;
+            const textFlipCardBack = document.createElement('h4');
+            textFlipCardBack.classList.add('title__text');
 
-        } else {
-            imgFlipCardFront.src = `../../data/${cards[number][i].image}`;
-            imgFlipCardFront.alt = `${cards[number][i].word}`;
-            titleFlipCardFront.innerText = `${cards[number][i].word}`;
-
-            imgRepeatControllerFlipCardInner.src = './data/img/rotate.png';
-            imgRepeatControllerFlipCardInner.alt = 'rotate';
-
-            imgFlipCardBack.src = `../../data/${cards[number][i].image}`;
-            imgFlipCardBack.alt = `${cards[number][i].translation}`;
-            titleFlipCardBack.innerText = `${cards[number][i].translation}`;
-            divFlipCard.id = `${number}-${i}`;
-            divFlipCard.dataset.audioSrc = cards[number][i].audioSrc;
-
-            if (modeText.textContent === 'Play') {
-                divFlipCard.classList.add('_play');
+            if (number === '0') {
+                imgFlipCardFront.src = `../../data/img/${cards[0][i]}.png`;
+                imgFlipCardFront.alt = `${cards[0][i]}`;
+                titleFlipCardFront.innerText = `${cards[0][i]}`;
+                textFlipCardFront.innerText = `${cards[i + 1].length} cards`;
                 divFlipCard.classList.add('_no-flip');
-                startButton.classList.remove('_hidden');
+                divFlipCard.id = `0-${i + 1}`;
+
+            } else {
+                imgFlipCardFront.src = `../../data/${cards[number][i].image}`;
+                imgFlipCardFront.alt = `${cards[number][i].word}`;
+                titleFlipCardFront.innerText = `${cards[number][i].word}`;
+
+                imgRepeatControllerFlipCardInner.src = './data/img/rotate.png';
+                imgRepeatControllerFlipCardInner.alt = 'rotate';
+
+                imgFlipCardBack.src = `../../data/${cards[number][i].image}`;
+                imgFlipCardBack.alt = `${cards[number][i].translation}`;
+                titleFlipCardBack.innerText = `${cards[number][i].translation}`;
+                divFlipCard.id = `${number}-${i}`;
+                divFlipCard.dataset.audioSrc = cards[number][i].audioSrc;
+
+                if (modeText.textContent === 'Play') {
+                    divFlipCard.classList.add('_play');
+                    divFlipCard.classList.add('_no-flip');
+                    startButton.classList.remove('_hidden');
+                }
+                arrayCards.push(divFlipCard);
             }
-            arrayCards.push(divFlipCard);
+
+            divFlipCardBack.appendChild(imgFlipCardBack);
+            divFlipCardBack.appendChild(titleFlipCardBack);
+            controllerFlipCardInner.appendChild(imgRepeatControllerFlipCardInner);
+            divFlipCardFront.appendChild(imgFlipCardFront);
+            divFlipCardFront.appendChild(titleFlipCardFront);
+            divFlipCardFront.appendChild(controllerFlipCardInner);
+            divFlipCardFront.appendChild(textFlipCardFront);
+            divFlipCardInner.appendChild(divFlipCardFront);
+            divFlipCardInner.appendChild(divFlipCardBack);
+            divFlipCard.appendChild(divFlipCardInner);
+            cardContainer.append(divFlipCard);
         }
-
-        divFlipCardBack.appendChild(imgFlipCardBack);
-        divFlipCardBack.appendChild(titleFlipCardBack);
-        controllerFlipCardInner.appendChild(imgRepeatControllerFlipCardInner);
-        divFlipCardFront.appendChild(imgFlipCardFront);
-        divFlipCardFront.appendChild(titleFlipCardFront);
-        divFlipCardFront.appendChild(controllerFlipCardInner);
-        divFlipCardFront.appendChild(textFlipCardFront);
-        divFlipCardInner.appendChild(divFlipCardFront);
-        divFlipCardInner.appendChild(divFlipCardBack);
-        divFlipCard.appendChild(divFlipCardInner);
-        cardContainer.append(divFlipCard);
-
+    } else {
+        tableStatistics.classList.remove('_hidden');
+        buttonStatistics.classList.remove('_hidden');
+        startButton.classList.add('_hidden');
+        createArrayTable();
     }
 }
 
 function createTextCategory(number) {
-    if (number === '0') {
-        clearElement(subHeader);
-        clearElement(answerIcon);
-        mode.classList.add('_hidden');
-        repeatButton.classList.add('_hidden');
-        startButton.classList.add('_hidden');
-        const textCategory = document.createElement('h2');
-        textCategory.classList.add('category');
-        textCategory.innerText = 'Main page';
-        subHeader.appendChild(textCategory);
+    clearElement(subHeader);
+    clearElement(answerIcon);
+    repeatButton.classList.add('_hidden');
+    const textCategory = document.createElement('h2');
+    textCategory.classList.add('category');
 
+    if (number === '0') {
+        mode.classList.add('_hidden');
+        startButton.classList.add('_hidden');
+        textCategory.innerText = 'Main page';
         const links = menu.querySelectorAll('a');
         links.forEach(link => {
             if (link.id !== '0') {
@@ -108,16 +127,9 @@ function createTextCategory(number) {
             }
         });
 
-    } else {
-        clearElement(subHeader);
-        clearElement(answerIcon);
+    } else if (number !== `${cards.length}`) {
         mode.classList.remove('_hidden');
-        repeatButton.classList.add('_hidden');
-        const textCategory = document.createElement('h2');
-        textCategory.classList.add('category');
         textCategory.innerText = `${cards[0][Number(number) - 1]}`;
-        subHeader.appendChild(textCategory)
-
         const links = menu.querySelectorAll('a');
         links.forEach(link => {
             if (link.id !== String(number)) {
@@ -126,9 +138,12 @@ function createTextCategory(number) {
                 link.classList.add('_active');
             }
         });
+    } else {
+        mode.classList.add('_hidden');
+        textCategory.innerText = 'Statistics';
     }
+    subHeader.appendChild(textCategory);
 }
-
 
 createTextCategory('0');
 createFlipCard('0');
@@ -140,7 +155,6 @@ function clearElement(element) {
         }
     }
 }
-
 
 let isMouseOut = false;
 
@@ -164,6 +178,7 @@ function handleCardClick(event) {
                 const audioElement = document.createElement('audio');
                 audioElement.src = audioFile;
                 audioElement.play();
+                setElement(cardId, 1);
             }
         }
     }
@@ -204,6 +219,5 @@ function handleCardBlur(event) {
         flipCardInner.classList.remove('flipped');
     }
 }
-
 
 export { createFlipCard, clearElement, createTextCategory, arrayCards };

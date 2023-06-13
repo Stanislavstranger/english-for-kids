@@ -10,7 +10,7 @@ import {
 
 import { createFlipCard, clearElement, createTextCategory } from '../components/card';
 import resultOption from '../controllers/outputResult';
-
+import { setElement } from './table-statistics';
 
 let selectedCardId;
 let count = 0;
@@ -51,6 +51,7 @@ function handleCardGuess(event) {
             const newActiveCardIds = Array.from(newActiveCards).map(card => card.id);
 
             playSuccessSound();
+            setElement(clickedCardId, undefined, 1);
 
             if (newActiveCardIds.length === 0) {
                 // Все слова угаданы правильно
@@ -72,6 +73,7 @@ function handleCardGuess(event) {
         } else {
             // Неправильный ответ
             playErrorSound();
+            setElement(selectedCardId, undefined, undefined, 1);
             clickedCard.classList.add('incorrect-guess');
             count++;
         }
@@ -79,12 +81,14 @@ function handleCardGuess(event) {
 }
 
 function playResultSound() {
-    // Воспроизвести звуковой сигнал "успех"
-    const resultSound = new Audio('../../data/audio/success.mp3');
-    resultSound.play();
 
-    /* const resultSound = new Audio('../../data/audio/failure.mp3');
-    resultSound.play(); */
+    if (count === 0) {
+        const resultSound = new Audio('../../data/audio/success.mp3');
+        resultSound.play();
+    } else {
+        const resultSound = new Audio('../../data/audio/failure.mp3');
+        resultSound.play();
+    }
 }
 
 function playSuccessSound() {
@@ -99,7 +103,6 @@ function playSuccessSound() {
 }
 
 function playErrorSound() {
-    // Воспроизвести звуковой сигнал "неудача"
     const errorSound = new Audio('../../data/audio/error.mp3');
     errorSound.play();
 
@@ -111,7 +114,6 @@ function playErrorSound() {
 }
 
 function showSuccessScreen() {
-
     repeatButton.classList.add('_hidden');
     clearElement(subHeader);
     clearElement(cardContainer);
@@ -141,31 +143,3 @@ function repeatWord() {
     const audioElement = new Audio(audioSrc);
     audioElement.play();
 }
-
-/* function speakObjectsSequentially(objects) {
-    let currentIndex = 0;
-
-    function speakNextObject() {
-        const object = objects[currentIndex];
-        const audioSrc = object.audioSrc;
-
-        const audioElement = new Audio(audioSrc);
-        audioElement.play();
-
-        audioElement.addEventListener('ended', () => {
-            const currentCardId = object.id; // Сохраняем текущий ID карты в отдельной переменной
-
-            currentIndex++;
-
-            if (currentIndex < objects.length) {
-                const cardElement = document.getElementById(currentCardId);
-                if (cardElement) {
-                    cardElement.addEventListener('click', () => handleCardGuess(currentCardId)); // Передаем текущий ID в обработчик события
-                }
-            }
-        });
-    }
-
-    speakNextObject();
-} */
-

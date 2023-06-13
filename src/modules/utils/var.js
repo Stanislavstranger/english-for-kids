@@ -7,6 +7,10 @@ const startButton = document.querySelector('.start-button');
 const result = document.querySelector('.result');
 const repeatButton = document.querySelector('.repeat');
 const answerIcon = document.querySelector('.answer-icon');
+const tableStatistics = document.querySelector('.table-statistics');
+const buttonStatistics = document.querySelector('.table-statistics__btn');
+const buttonRepeatWords = document.querySelector('.table-statistics__btn_repeat-words');
+const buttonReset = document.querySelector('.table-statistics__btn_reset');
 
 export {
     header,
@@ -17,5 +21,9 @@ export {
     repeatButton,
     answerIcon,
     mode,
-    result
+    result,
+    tableStatistics,
+    buttonStatistics,
+    buttonRepeatWords,
+    buttonReset
 };
