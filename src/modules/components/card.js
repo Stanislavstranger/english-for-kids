@@ -10,17 +10,22 @@ import {
 } from '../utils/var';
 
 import cards from '../../data/cards';
-import modeText from '../controllers/toggleMode';
+import modeText from '../controllers/toggle-mode';
 import { createArrayTable, setElement } from './table-statistics';
 
 let arrayCards = [];
+let currentCards = [];
+
+function setCardArray(array) {
+    currentCards = array;
+}
 
 function createFlipCard(number) {
-    if (number !== `${cards.length}`) {
+    if (number !== `${currentCards.length}`) {
         tableStatistics.classList.add('_hidden');
         buttonStatistics.classList.add('_hidden');
 
-        for (let i = 0; i < cards[0].length; i++) {
+        for (let i = 0; i < currentCards[number].length; i++) {
             const divFlipCard = document.createElement('div');
             divFlipCard.classList.add('flip-card');
 
@@ -58,26 +63,32 @@ function createFlipCard(number) {
             textFlipCardBack.classList.add('title__text');
 
             if (number === '0') {
-                imgFlipCardFront.src = `../../data/img/${cards[0][i]}.png`;
-                imgFlipCardFront.alt = `${cards[0][i]}`;
-                titleFlipCardFront.innerText = `${cards[0][i]}`;
-                textFlipCardFront.innerText = `${cards[i + 1].length} cards`;
+                imgFlipCardFront.src = `../../data/img/${currentCards[0][i]}.png`;
+                imgFlipCardFront.alt = `${currentCards[0][i]}`;
+                titleFlipCardFront.innerText = `${currentCards[0][i]}`;
+                textFlipCardFront.innerText = `${currentCards[i + 1].length} cards`;
                 divFlipCard.classList.add('_no-flip');
                 divFlipCard.id = `0-${i + 1}`;
 
             } else {
-                imgFlipCardFront.src = `../../data/${cards[number][i].image}`;
-                imgFlipCardFront.alt = `${cards[number][i].word}`;
-                titleFlipCardFront.innerText = `${cards[number][i].word}`;
+                imgFlipCardFront.src = `../../data/${currentCards[number][i].image}`;
+                imgFlipCardFront.alt = `${currentCards[number][i].word}`;
+                titleFlipCardFront.innerText = `${currentCards[number][i].word}`;
 
                 imgRepeatControllerFlipCardInner.src = './data/img/rotate.png';
                 imgRepeatControllerFlipCardInner.alt = 'rotate';
 
-                imgFlipCardBack.src = `../../data/${cards[number][i].image}`;
-                imgFlipCardBack.alt = `${cards[number][i].translation}`;
-                titleFlipCardBack.innerText = `${cards[number][i].translation}`;
-                divFlipCard.id = `${number}-${i}`;
-                divFlipCard.dataset.audioSrc = cards[number][i].audioSrc;
+                imgFlipCardBack.src = `../../data/${currentCards[number][i].image}`;
+                imgFlipCardBack.alt = `${currentCards[number][i].translation}`;
+                titleFlipCardBack.innerText = `${currentCards[number][i].translation}`;
+
+                if (currentCards[number][i].id) {
+                    divFlipCard.id = currentCards[number][i].id;
+                } else {
+                    divFlipCard.id = `${number}-${i}`;
+                }
+
+                divFlipCard.dataset.audioSrc = currentCards[number][i].audioSrc;
 
                 if (modeText.textContent === 'Play') {
                     divFlipCard.classList.add('_play');
@@ -127,9 +138,9 @@ function createTextCategory(number) {
             }
         });
 
-    } else if (number !== `${cards.length}`) {
+    } else if (number !== `${currentCards.length}`) {
         mode.classList.remove('_hidden');
-        textCategory.innerText = `${cards[0][Number(number) - 1]}`;
+        textCategory.innerText = `${currentCards[0][Number(number) - 1]}`;
         const links = menu.querySelectorAll('a');
         links.forEach(link => {
             if (link.id !== String(number)) {
@@ -145,6 +156,7 @@ function createTextCategory(number) {
     subHeader.appendChild(textCategory);
 }
 
+setCardArray(cards);
 createTextCategory('0');
 createFlipCard('0');
 
@@ -178,7 +190,7 @@ function handleCardClick(event) {
                 const audioElement = document.createElement('audio');
                 audioElement.src = audioFile;
                 audioElement.play();
-                setElement(cardId, 1);
+                setElement('train', cardId, 1);
             }
         }
     }
@@ -220,4 +232,4 @@ function handleCardBlur(event) {
     }
 }
 
-export { createFlipCard, clearElement, createTextCategory, arrayCards };
+export { createFlipCard, clearElement, createTextCategory, arrayCards, setCardArray };

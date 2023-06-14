@@ -1,5 +1,5 @@
 import cards from '../../data/cards';
-import { createMenuItem, nav, ul } from '../utils/createMenuItems';
+import { createMenuItem, nav, ul } from '../utils/create-menu-items';
 import { header } from '../utils/var';
 
 ['Main page', ...cards[0],'Statistics'].map(createMenuItem).forEach(item => ul.appendChild(item));

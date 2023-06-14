@@ -1,5 +1,11 @@
 import cards from '../../data/cards';
-import { tableStatistics, buttonStatistics } from '../utils/var'
+import {
+    createFlipCard,
+    clearElement,
+    createTextCategory,
+    setCardArray,
+} from '../components/card';
+import { tableStatistics, buttonStatistics, cardContainer } from '../utils/var';
 
 let arrayTable;
 
@@ -8,7 +14,6 @@ if (storedArrayTable) {
     arrayTable = JSON.parse(storedArrayTable);
 } else {
     arrayTable = [];
-    console.log("🚀 ~ file: table-statistics.js:12 ~ arrayTable:", arrayTable)
 }
 
 export function createArrayTable() {
@@ -158,7 +163,7 @@ function createSortableHeader(label, columnIndex) {
     return header;
 }
 
-export function setElement(id, trained = 0, correct = 0, incorrect = 0) {
+export function setElement(mode, id, trained = 0, correct = 0, incorrect = 0) {
     const index = arrayTable.findIndex((element) => {
         return element.id === id;
     });
@@ -168,13 +173,14 @@ export function setElement(id, trained = 0, correct = 0, incorrect = 0) {
         arrayTable[index].correct += correct;
         arrayTable[index].incorrect += incorrect;
     }
-
-    if (correct === 0 && incorrect === 0) {
-        arrayTable[index].percent = '0.00%';
-    } else {
-        arrayTable[index].percent = ((arrayTable[index].correct /
-            (arrayTable[index].correct + arrayTable[index].incorrect)) *
-            100).toFixed(2) + '%';
+    if (mode === 'play') {
+        if (correct === 0 && incorrect === 0) {
+            arrayTable[index].percent = '0.00%';
+        } else  {
+            arrayTable[index].percent = ((arrayTable[index].correct /
+                (arrayTable[index].correct + arrayTable[index].incorrect)) *
+                100).toFixed(2) + '%';
+        }
     }
 
     localStorage.setItem('arrayTable', JSON.stringify(arrayTable));
@@ -182,12 +188,48 @@ export function setElement(id, trained = 0, correct = 0, incorrect = 0) {
     return index;
 }
 
+function getLowestPercentageWords() {
+    const filteredArrayTable = arrayTable.filter(item =>
+        parseFloat(item.percent) !== 0 && parseFloat(item.percent) < 51);
+    const sortedArrayTable = filteredArrayTable.sort((a, b) =>
+        parseFloat(a.percent) - parseFloat(b.percent));
+    const slicedArrayTable = sortedArrayTable.slice(0, 8);
+    return slicedArrayTable.map(item => item.id);
+}
+
+let repeatWordsArray;
+
+function repeatWords(idArray) {
+    console.log(idArray.length);
+    if (idArray.length) {
+        repeatWordsArray = [['repeat difficult words'], []];
+        for (let i = 0; i < idArray.length; i++) {
+            const card = {
+                ...cards[idArray[i].split('-')[0]][idArray[i].split('-')[1]],
+                id: idArray[i]
+            };
+            repeatWordsArray[1].push(card);
+        }
+        return repeatWordsArray;
+    } else {
+        repeatWordsArray = [['no difficult words'], []];
+        return repeatWordsArray;
+    }
+}
+
 buttonStatistics.addEventListener('click', function (event) {
     if (event.target.classList.contains('table-statistics__btn_reset')) {
         localStorage.clear();
         clearArrayTable();
         createArrayTable();
-        console.log("🚀 ~ file: table-statistics.js:189 ~ ArrayTable:", arrayTable)
+    } else if (event.target.classList.contains('table-statistics__btn_repeat-words')) {
+        let idRepeatWordsArray = getLowestPercentageWords();
+        repeatWordsArray = repeatWords(idRepeatWordsArray);
+
+        clearElement(cardContainer);
+        setCardArray(repeatWordsArray);
+        createFlipCard(1);
+        createTextCategory(1);
     }
 });
 

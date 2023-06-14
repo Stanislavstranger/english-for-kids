@@ -1,5 +1,6 @@
-import { createFlipCard, clearElement, createTextCategory } from '../components/card';
+import { createFlipCard, clearElement, createTextCategory, setCardArray } from '../components/card';
 import { cardContainer } from '../utils/var';
+import cards from '../../data/cards';
 
 let menuToggle = document.getElementById('menu-toggle');
 let menu = document.getElementById('menu');
@@ -23,9 +24,11 @@ menu.addEventListener('click', function (event) {
         event.target.classList.add('_active');
 
         clearElement(cardContainer);
+        setCardArray(cards);
         createFlipCard(number);
         createTextCategory(number);
     }
+
 });
 
 export { number, menuToggle };

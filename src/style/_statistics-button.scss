@@ -3,9 +3,14 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     column-gap: 20px;
+    padding-left: 25vw;
 
     &._hidden {
         display: none;
+    }
+
+    @media (max-width:670px) {
+        padding-left: 0;
     }
 }
 

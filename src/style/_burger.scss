@@ -31,17 +31,17 @@ a {
     outline: 0;
     display: none;
     z-index: 3;
+}
 
-    &._active {
-        color: #333;
-    }
+a._active {
+    color: #333;
+}
 
-    &:hover {
-        display: block;
-        color: #333;
-        background-color: $orange;
-        transition: all .5s;
-    }
+a:hover {
+    display: block;
+    color: #333;
+    background-color: $orange;
+    transition: all .5s;
 }
 
 #trigger,

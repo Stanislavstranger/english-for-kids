@@ -8,9 +8,10 @@ import {
     result
 } from '../utils/var';
 
-import { createFlipCard, clearElement, createTextCategory } from '../components/card';
-import resultOption from '../controllers/outputResult';
+import { createFlipCard, clearElement, createTextCategory, setCardArray } from './card';
+import resultOption from '../controllers/output-result';
 import { setElement } from './table-statistics';
+import cards from '../../data/cards';
 
 let selectedCardId;
 let count = 0;
@@ -51,7 +52,7 @@ function handleCardGuess(event) {
             const newActiveCardIds = Array.from(newActiveCards).map(card => card.id);
 
             playSuccessSound();
-            setElement(clickedCardId, undefined, 1);
+            setElement('play', clickedCardId, undefined, 1);
 
             if (newActiveCardIds.length === 0) {
                 // Все слова угаданы правильно
@@ -73,7 +74,7 @@ function handleCardGuess(event) {
         } else {
             // Неправильный ответ
             playErrorSound();
-            setElement(selectedCardId, undefined, undefined, 1);
+            setElement('play', selectedCardId, undefined, undefined, 1);
             clickedCard.classList.add('incorrect-guess');
             count++;
         }
@@ -127,10 +128,11 @@ function showSuccessScreen() {
     setTimeout(() => {
         clearElement(cardContainer);
         clearElement(result);
+        setCardArray(cards);
         createFlipCard('0');
         createTextCategory('0');
         document.body.classList.remove('_result');
-    }, 5000);
+    }, 3000);
 
 }
 

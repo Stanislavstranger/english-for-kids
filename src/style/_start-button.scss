@@ -33,4 +33,12 @@
         background-color: $green;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
+
+    @media (max-width:915px) and (orientation: landscape) {
+        position: fixed;
+        bottom: 15px;
+        right: 25px;
+        height: 40vh;
+        font-size: 1.5em;
+    }
 }
