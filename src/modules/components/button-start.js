@@ -84,32 +84,32 @@ function handleCardGuess(event) {
 function playResultSound() {
 
     if (count === 0) {
-        const resultSound = new Audio('../../data/audio/success.mp3');
+        const resultSound = new Audio('./data/audio/success.mp3');
         resultSound.play();
     } else {
-        const resultSound = new Audio('../../data/audio/failure.mp3');
+        const resultSound = new Audio('./data/audio/failure.mp3');
         resultSound.play();
     }
 }
 
 function playSuccessSound() {
-    const successSound = new Audio('../../data/audio/correct.mp3');
+    const successSound = new Audio('./data/audio/correct.mp3');
     successSound.play();
 
     const imgAnswerIcon = document.createElement('img');
     imgAnswerIcon.classList.add('answer-icon__img');
-    imgAnswerIcon.src = `../../data/img/correct.png`;
+    imgAnswerIcon.src = `./data/img/correct.png`;
     imgAnswerIcon.alt = `correct`;
     answerIcon.prepend(imgAnswerIcon);
 }
 
 function playErrorSound() {
-    const errorSound = new Audio('../../data/audio/error.mp3');
+    const errorSound = new Audio('./data/audio/error.mp3');
     errorSound.play();
 
     const imgAnswerIcon = document.createElement('img');
     imgAnswerIcon.classList.add('answer-icon__img');
-    imgAnswerIcon.src = `../../data/img/incorrect.png`;
+    imgAnswerIcon.src = `./data/img/incorrect.png`;
     imgAnswerIcon.alt = `incorrect`;
     answerIcon.prepend(imgAnswerIcon);
 }

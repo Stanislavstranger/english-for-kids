@@ -63,7 +63,7 @@ function createFlipCard(number) {
             textFlipCardBack.classList.add('title__text');
 
             if (number === '0') {
-                imgFlipCardFront.src = `../../data/img/${currentCards[0][i]}.png`;
+                imgFlipCardFront.src = `./data/img/${currentCards[0][i]}.png`;
                 imgFlipCardFront.alt = `${currentCards[0][i]}`;
                 titleFlipCardFront.innerText = `${currentCards[0][i]}`;
                 textFlipCardFront.innerText = `${currentCards[i + 1].length} cards`;
@@ -71,14 +71,14 @@ function createFlipCard(number) {
                 divFlipCard.id = `0-${i + 1}`;
 
             } else {
-                imgFlipCardFront.src = `../../data/${currentCards[number][i].image}`;
+                imgFlipCardFront.src = `./data/${currentCards[number][i].image}`;
                 imgFlipCardFront.alt = `${currentCards[number][i].word}`;
                 titleFlipCardFront.innerText = `${currentCards[number][i].word}`;
 
                 imgRepeatControllerFlipCardInner.src = './data/img/rotate.png';
                 imgRepeatControllerFlipCardInner.alt = 'rotate';
 
-                imgFlipCardBack.src = `../../data/${currentCards[number][i].image}`;
+                imgFlipCardBack.src = `./data/${currentCards[number][i].image}`;
                 imgFlipCardBack.alt = `${currentCards[number][i].translation}`;
                 titleFlipCardBack.innerText = `${currentCards[number][i].translation}`;
 
