@@ -13,17 +13,17 @@ const buttonRepeatWords = document.querySelector('.table-statistics__btn_repeat-
 const buttonReset = document.querySelector('.table-statistics__btn_reset');
 
 export {
-    header,
-    mainContainer,
-    cardContainer,
-    subHeader,
-    startButton,
-    repeatButton,
-    answerIcon,
-    mode,
-    result,
-    tableStatistics,
-    buttonStatistics,
-    buttonRepeatWords,
-    buttonReset
+  header,
+  mainContainer,
+  cardContainer,
+  subHeader,
+  startButton,
+  repeatButton,
+  answerIcon,
+  mode,
+  result,
+  tableStatistics,
+  buttonStatistics,
+  buttonRepeatWords,
+  buttonReset,
 };
