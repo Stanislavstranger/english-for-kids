@@ -1,0 +1,21 @@
+.sub-header {
+    display: inline-block;
+    height: 60px;
+    width: 330px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -20px;
+    margin-bottom: 30px;
+
+    &._hidden {
+        display: none;
+    }
+
+    @media (max-width:370px) {
+            width: 80vw;
+    }
+}
+
+.category {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}

@@ -1,0 +1,44 @@
+.start-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    border-radius: 50px;
+    font-size: 40px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: $orange;
+    color: $white;
+    width: 80px;
+    height: 260px;
+    margin: 5px;
+    padding: 0;
+    position: fixed;
+    bottom: 150px;
+    right: 25px;
+    cursor: pointer;
+
+    &._hidden {
+        display: none;
+    }
+
+    span {
+        margin: -2px;
+        white-space: nowrap;
+    }
+
+    &:hover {
+        background-color: $green;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width:915px) and (orientation: landscape) {
+        position: fixed;
+        bottom: 15px;
+        right: 25px;
+        height: 40vh;
+        font-size: 1.5em;
+    }
+}

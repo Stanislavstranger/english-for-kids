@@ -1,0 +1,49 @@
+.answer-icon {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    overflow: hidden;
+    text-align: right;
+    max-width: 42vw;
+
+    @media (max-width:1140px) {
+        flex-direction: column;
+        position: fixed;
+        max-height: 50vh;
+        right: 40px;
+        bottom: 130px;
+    }
+
+    @media (max-width:380px) {
+        right: 30px;
+    }
+
+    @media (max-width:900px) and (orientation: landscape) {
+        flex-wrap: nowrap;
+        overflow: hidden;
+        height: 15vh;
+    }
+}
+
+.answer-icon__img {
+    width: 50px;
+    margin: 15px;
+
+    @media (max-width:1140px) {
+        width: 45px;
+        margin: 10px;
+    }
+
+    @media (max-height:785px) {
+        width: 5vh;
+        margin: 10px;
+    }
+
+    @media (max-height:670px) {
+        width: 4.5vh;
+    }
+
+    @media (max-width:900px) and (orientation: landscape) {
+            width: 45px;
+            margin: 10px;
+    }
+}

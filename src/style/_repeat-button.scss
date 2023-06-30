@@ -1,0 +1,26 @@
+.repeat {
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    width: 80px;
+    margin: 15px;
+    cursor: pointer;
+
+    @media (max-width:380px) {
+        right: 0px;
+    }
+
+    &._hidden {
+        display: none;
+    }
+
+    &:hover {
+        transition: rotate 0.8s;
+        rotate: 360deg;
+    }
+
+    &:active {
+        transition: scale 0.8s;
+        scale: 1.2;
+    }
+}

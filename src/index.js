@@ -1,0 +1,10 @@
+import '@babel/polyfill';
+import './index.html';
+import './index.scss';
+import './modules/components/burger';
+import './modules/controllers/toggle-mode';
+import './modules/controllers/toggle-burger';
+import './modules/controllers/output-result';
+import './modules/components/card';
+import './modules/components/button-start';
+import './modules/components/table-statistics';
